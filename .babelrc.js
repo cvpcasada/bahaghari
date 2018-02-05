@@ -9,7 +9,7 @@ module.exports = {
       "@babel/preset-env",
       {
         useBuiltIns: "entry",
-        modules: false,
+        modules: isTest && `commonjs`,
         exclude: ["transform-regenerator", "transform-async-to-generator"]
       }
     ],
