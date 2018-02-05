@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Razer interface connects successfully 1`] = `
+Object {
+  "author": Object {
+    "contact": "www.razerzone.com",
+    "name": "Chroma Developer",
+  },
+  "category": "application",
+  "description": "This is a REST interface test application",
+  "device_supported": Array [
+    "keyboard",
+    "mouse",
+    "headset",
+    "mousepad",
+    "keypad",
+    "chromalink",
+  ],
+  "title": "Razer Chroma SDK RESTful Test Application",
+}
+`;

@@ -5,7 +5,8 @@
   "module": "dist/bahaghari.es.js",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.39",
@@ -16,9 +17,13 @@
     "@babel/plugin-transform-runtime": "^7.0.0-beta.39",
     "@babel/preset-env": "^7.0.0-beta.39",
     "@babel/preset-flow": "^7.0.0-beta.39",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^22.1.0",
     "babel-plugin-fast-async": "^6.1.2",
     "babel-plugin-lodash": "^3.3.2",
     "curry2": "^1.0.3",
+    "delay": "^2.0.0",
+    "jest": "^22.1.4",
     "ramda": "^0.25.0",
     "rollup": "^0.55.3",
     "rollup-plugin-babel": "4.0.0-beta.1",
