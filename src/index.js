@@ -10,15 +10,16 @@ export async function createChroma(application) {
   if (res.status >= 400) throw new Error(`Bad response from server`);
 
   const { uri, session } = await res.json();
-
+  const heartbeat = setInterval(
+    () => fetch(`${uri}/heartbeat`, { method: put }),
+    5000
+  );
+  
   return {
     application,
     uri,
     session,
-    heartbeat: setInterval(
-      () => fetch(`${uri}/heartbeat`, { method: put }),
-      5000
-    )
+    heartbeat
   };
 }
 
@@ -33,5 +34,5 @@ export const setEffect = curry2(
 
 export const stop = curry2(async chroma => {
   clearInterval(chroma.heartbeat);
-  return fetch(chroma.uri, { method: `DELETE` });
+  return await fetch(chroma.uri, { method: `DELETE` });
 });
