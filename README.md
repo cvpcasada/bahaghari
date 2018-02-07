@@ -5,7 +5,7 @@ Functional javascript API wrapper for Razer Chroma REST api.
 
 ## Usage
 
-```
+```javascript
 import * as B from 'bahaghari';
 
 const app = {
@@ -22,7 +22,7 @@ const chromaIntance = B.createChroma(app);
 
 // apply effects
 await B.setWaveAnimation({
-    device: `Keyboard`,
+    device: `keyboard`,
     cycles: 5,
     colors: ['#fff', `red`, ...]
 }, chromaInstance);
