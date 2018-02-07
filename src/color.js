@@ -39,11 +39,3 @@ export function createBGRColor(color = { r: 0, g: 0, b: 0 }) {
 
   return parseInt(result, 16);
 }
-
-export const Black = createBGRColor('000000');
-export const HotPink = createBGRColor({ r: 255, g: 105, b: 180 });
-export const Orange = createBGRColor('ffa500');
-export const Pink = createBGRColor('ff00ff');
-export const Purple = createBGRColor('800080');
-export const White = createBGRColor({ r: 255, g: 255, b: 255 });
-export const Yellow = createBGRColor({ r: 255, g: 255, b: 0 });
