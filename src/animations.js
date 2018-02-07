@@ -1,27 +1,26 @@
 import { setStaticEffect, setOffEffect } from "./effects";
 
 import delay from "delay";
-import { clearInterval } from "timers";
 
 // 15fps
-const delayMS = 1000 / 15;
+const delayMS = 1000 / 60;
 
 export async function setBreathingAnimation(
   { device, duration, colors = [] },
   chroma
 ) {
   const cancelToken = setInterval(async () => {
-    for (let color of colors) {
-      await setStaticEffect({ device, color }, chroma);
+    for (let i = 0; i < colors.length; i++) {
+      await setStaticEffect({ device, color: colors[i] }, chroma);
       await delay(delayMS);
     }
   }, delayMS);
 
-  await delay(2000);
+  await delay(duration);
 
   clearInterval(cancelToken);
 
-  await setOffEffect({ device }, chroma);
+  return await setOffEffect({ device }, chroma);
 }
 
 export async function setWaveAnimation() {

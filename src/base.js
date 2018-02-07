@@ -1,5 +1,6 @@
 import fetch from "cross-fetch";
 import curry2 from "curry2";
+import delay from 'delay';
 
 export async function createChroma(application) {
   const res = await fetch(`http://localhost:54235/razer/chromasdk`, {
@@ -52,6 +53,7 @@ export const deleteEffect = curry2(async (effectIds = [], chroma) => {
 });
 
 export async function stop(chroma) {
+  await delay(1000);
   clearInterval(chroma.heartbeat);
   return await fetch(chroma.uri, { method: `DELETE` });
 }

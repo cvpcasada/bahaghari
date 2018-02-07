@@ -1,3 +1,4 @@
+
 const trunc = num => Math.max(0, Math.min(255, num));
 
 export function createBGRColor(color = { r: 0, g: 0, b: 0 }) {

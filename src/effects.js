@@ -12,7 +12,7 @@ export async function setStaticEffect({ device, color }, chroma) {
       device,
       body: {
         effect: Effects.CHROMA_STATIC,
-        param: { color: createBGRColor(color) }
+        param: { color }
       }
     },
     chroma
