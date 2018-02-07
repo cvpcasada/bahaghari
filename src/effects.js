@@ -1,5 +1,5 @@
-import { setEffect } from "./base";
-import { createBGRColor } from "./color";
+import { setEffect } from './base';
+
 const Effects = {
   CHROMA_NONE: `CHROMA_NONE`,
   CHROMA_CUSTOM: `CHROMA_CUSTOM`,
@@ -12,10 +12,23 @@ export async function setStaticEffect({ device, color }, chroma) {
       device,
       body: {
         effect: Effects.CHROMA_STATIC,
-        param: { color }
-      }
+        param: { color },
+      },
     },
-    chroma
+    chroma,
+  );
+}
+
+export async function setCustomEffect({ device, param }, chroma) {
+  return await setEffect(
+    {
+      device,
+      body: {
+        effect: Effects.CHROMA_CUSTOM,
+        param,
+      },
+    },
+    chroma,
   );
 }
 
@@ -25,8 +38,8 @@ export async function setOffEffect({ device }, chroma) {
       device,
       body: {
         effect: Effects.CHROMA_NONE,
-      }
+      },
     },
-    chroma
+    chroma,
   );
 }
