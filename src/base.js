@@ -29,17 +29,40 @@ export async function createChroma(application) {
 export const setEffect = curry2(
   async ({ device, method = 'PUT', body }, chroma) => {
     if (chroma.application.device_supported.includes(device)) {
-      return await fetch(`${chroma.uri}/${device}`, {
+      const res = await fetch(`${chroma.uri}/${device}`, {
         method,
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
       });
+
+      return await res.json();
     }
     throw new Error(`${device} device is not supported`);
   },
 );
+
+export async function setEffects({effectIds, fps}, chroma) {
+  if (effectIds.length === 0) {
+    return;
+  }
+
+  let jsonresp = [];
+  for (let i = 0; i < effectIds.length; i++) {
+    const deviceResp = await fetch(`${chroma.uri}/effect`, {
+        method: `PUT`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: effectIds[i]}),
+    });
+    await delay(1000 / fps);
+    jsonresp.push(await deviceResp.json());
+  }
+
+  return jsonresp;
+}
 
 export const deleteEffect = curry2(async (effectIds = [], chroma) => {
   if (effectIds.length === 0) return;
@@ -55,5 +78,6 @@ export const deleteEffect = curry2(async (effectIds = [], chroma) => {
 export async function stop(chroma) {
   await delay(1000);
   clearInterval(chroma.heartbeat);
-  return await fetch(chroma.uri, { method: `DELETE` });
+  const res = await fetch(chroma.uri, { method: `DELETE` });
+  return await res.json();
 }

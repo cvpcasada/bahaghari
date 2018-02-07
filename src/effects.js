@@ -1,6 +1,6 @@
 import { setEffect } from './base';
 
-const Effects = {
+export const Effects = {
   CHROMA_NONE: `CHROMA_NONE`,
   CHROMA_CUSTOM: `CHROMA_CUSTOM`,
   CHROMA_STATIC: `CHROMA_STATIC`,

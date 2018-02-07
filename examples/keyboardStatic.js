@@ -15,14 +15,24 @@ async function shiftToPurple() {
 
   const chroma = await B.createChroma(app);
 
+  await B.setWaveAnimation(
+    {
+      device: app.device_supported[0],
+      cycles: 10,
+      colors: ['black', 'purple', 'black', 'green'],
+    },
+    chroma,
+  );
+
   await B.setBreathingAnimation(
     {
       device: app.device_supported[0],
       duration: 10000,
-      colors: ['#fff', '#9400D3', '#000'],
+      colors: ['black', 'purple', 'black', 'green'],
     },
     chroma,
   );
+
   await B.stop(chroma);
 }
 
