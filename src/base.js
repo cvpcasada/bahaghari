@@ -43,7 +43,7 @@ export const setEffect = curry2(
   },
 );
 
-export async function setEffects({effectIds, fps}, chroma) {
+export async function setEffects({ effectIds, fps }, chroma) {
   if (effectIds.length === 0) {
     return;
   }
@@ -51,11 +51,11 @@ export async function setEffects({effectIds, fps}, chroma) {
   let jsonresp = [];
   for (let i = 0; i < effectIds.length; i++) {
     const deviceResp = await fetch(`${chroma.uri}/effect`, {
-        method: `PUT`,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({id: effectIds[i]}),
+      method: `PUT`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: effectIds[i] }),
     });
     await delay(1000 / fps);
     jsonresp.push(await deviceResp.json());

@@ -37,9 +37,6 @@
     "rollup-plugin-replace": "^2.0.0"
   },
   "dependencies": {
-    "@chromasdk/chromajs": "^0.1.0",
-    "cross-fetch": "^1.1.1",
-    "rollup-plugin-nodent": "^0.2.2",
-    "rollup-watch": "^4.3.1"
+    "cross-fetch": "^1.1.1"
   }
 }
