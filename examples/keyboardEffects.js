@@ -1,7 +1,6 @@
-const delay = require('delay');
 const B = require('../dist/bahaghari.common');
 
-async function shiftToPurple() {
+async function start() {
   const app = {
     title: 'Keyboard CHROMA_STATIC test',
     description: 'test set fixed keyboard color',
@@ -36,4 +35,4 @@ async function shiftToPurple() {
   await B.stop(chroma);
 }
 
-shiftToPurple();
+start();

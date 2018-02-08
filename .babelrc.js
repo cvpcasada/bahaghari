@@ -10,6 +10,7 @@ module.exports = {
       {
         useBuiltIns: 'entry',
         modules: isTest && `commonjs`,
+        loose: true,
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
       },
     ],

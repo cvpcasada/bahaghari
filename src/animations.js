@@ -1,21 +1,17 @@
 import { Effects } from './effects';
 import { setEffect, setEffects, deleteEffect } from './base';
-import C from 'chroma-js';
-import { createBGRColor } from './color';
-import delay from 'delay';
+import { createBGRColor, generateGradient } from './color';
 
 const FPS = 24;
-// 15fps
-const delayMS = 1000 / FPS;
+const WAVELENGTH_MULTIPLIER = 4;
 
 const waveFn = (fps, x) => Math.pow(Math.sin(Math.PI * x / fps), 2);
 
-const WAVELENGTH_MULTIPLIER = 4;
 export async function setBreathingAnimation(
   { device, duration, colors = [] },
   chroma,
 ) {
-  const gradientFn = C.scale(colors);
+  const gradientFn = generateGradient(colors);
 
   const effects = [];
 
@@ -25,7 +21,7 @@ export async function setBreathingAnimation(
       effect: Effects.CHROMA_STATIC,
       param: {
         color: createBGRColor(
-          gradientFn(waveFn(FPS * WAVELENGTH_MULTIPLIER, i)).hex(),
+          gradientFn(waveFn(FPS * WAVELENGTH_MULTIPLIER, i)),
         ),
       },
     });
@@ -51,12 +47,12 @@ export async function setBreathingAnimation(
 }
 
 export async function setWaveAnimation({ device, cycles, colors }, chroma) {
-  const gradientFn = C.scale(colors);
+  const gradientFn = generateGradient(colors);
 
   // generate colors for each key column
   let colColors = [];
   for (let i = 0; i < 22; i++) {
-    colColors.push(createBGRColor(gradientFn(i / 22).hex()));
+    colColors.push(createBGRColor(gradientFn(i / 22)));
   }
 
   const effects = [];
