@@ -18,7 +18,7 @@ async function start() {
     {
       device: app.device_supported[0],
       cycles: 10,
-      colors: ['black', 'purple', 'black', 'green'],
+      colors: [`#ff0000`, `#00FF00`],
     },
     chroma,
   );
@@ -27,7 +27,7 @@ async function start() {
     {
       device: app.device_supported[0],
       duration: 10000,
-      colors: ['black', 'purple', 'black', 'green'],
+      colors: [`#551a8b`, `#000`, `#00ff00` ],
     },
     chroma,
   );

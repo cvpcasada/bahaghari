@@ -7,7 +7,7 @@ export function generateGradient(colors = []) {
   let colorArray = colors.map(hexToRgb);
 
   return t =>
-    colorArray[0].map((col, i) => bezier(colorArray.map(row => row[i]), t));
+    colorArray[0].map((col, i) => Math.trunc(bezier(colorArray.map(row => row[i]), t)));
 }
 
 export function createBGRColor(color = [0 ,0, 0]) {
