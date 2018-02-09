@@ -1,7 +1,7 @@
 import { Effects } from './effects';
 import { setEffect, setEffects, deleteEffect } from './base';
 import { createBGRColor, generateGradient } from './color';
-
+import delay from 'delay';
 const FPS = 24;
 const WAVELENGTH_MULTIPLIER = 4;
 
@@ -66,18 +66,23 @@ export async function setWaveAnimation({ device, cycles, colors }, chroma) {
     colColors.unshift(colColors.pop());
   }
 
-  const results = await setEffect(
-    { device, body: { effects }, method: 'POST' },
-    chroma,
-  );
+  // const results = await setEffect(
+  //   { device, body: { effects }, method: 'POST' },
+  //   chroma,
+  // );
+
+
 
   // do the cycle?
   for (let i = 0; i < cycles; i++) {
-    await setEffects(
-      { device, effectIds: results.results.map(x => x.id), fps: FPS },
-      chroma,
-    );
+    for (let j = 0; j < 22; j++) {
+      await setEffect(
+        { device, body: effects[j] },
+        chroma,
+      );
+      await delay(1000 / FPS);
+    }
   }
 
-  return await deleteEffect(results.results.map(x => x.id), chroma);
+  // return await deleteEffect(results.results.map(x => x.id), chroma);
 }

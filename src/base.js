@@ -4,6 +4,7 @@ import delay from 'delay';
 export async function createChroma(application) {
   const res = await fetch(`https://chromasdk.io:54236/razer/chromasdk`, {
     method: `POST`,
+    mode: `cors`,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -19,7 +20,7 @@ export async function createChroma(application) {
 
   return {
     application,
-    uri,
+    uri: `https://chromasdk.io:54236/sessionid=${sessionid}`,
     sessionid,
     heartbeat,
   };
@@ -27,15 +28,22 @@ export async function createChroma(application) {
 
 export async function setEffect({ device, method = 'PUT', body }, chroma) {
   if (chroma.application.device_supported.includes(device)) {
-    const res = await fetch(`${chroma.uri}/${device}`, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
-
-    return await res.json();
+      const res = await fetch(`${chroma.uri}/${device}`, {
+        method,
+        mode: `cors`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+  
+      const jsonResp = await res.json();
+      console.log(jsonResp);
+   
+      if ('results' in jsonResp || 'result' in jsonResp)
+        return jsonResp;
+      else
+        throw new Error(`Empty Response`);
   }
   throw new Error(`${device} device is not supported`);
 }
@@ -49,6 +57,7 @@ export async function setEffects({ effectIds, fps }, chroma) {
   for (let i = 0; i < effectIds.length; i++) {
     const deviceResp = await fetch(`${chroma.uri}/effect`, {
       method: `PUT`,
+      mode: `cors`,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -64,6 +73,7 @@ export async function setEffects({ effectIds, fps }, chroma) {
 export async function deleteEffect(effectIds = [], chroma) {
   if (effectIds.length === 0) return;
   return await fetch(`${chroma.uri}/effect`, {
+    mode: `cors`,
     headers: {
       'Content-Type': 'application/json',
     },
