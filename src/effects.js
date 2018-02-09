@@ -3,6 +3,7 @@ import { setEffect } from './base';
 export const Effects = {
   CHROMA_NONE: `CHROMA_NONE`,
   CHROMA_CUSTOM: `CHROMA_CUSTOM`,
+  CHROMA_CUSTOM2: `CHROMA_CUSTOM2`,
   CHROMA_STATIC: `CHROMA_STATIC`,
 };
 
@@ -15,7 +16,7 @@ export async function setStaticEffect({ device, color }, chroma) {
         param: { color },
       },
     },
-    chroma,
+    chroma
   );
 }
 
@@ -28,7 +29,7 @@ export async function setCustomEffect({ device, param }, chroma) {
         param,
       },
     },
-    chroma,
+    chroma
   );
 }
 
@@ -40,6 +41,6 @@ export async function setOffEffect({ device }, chroma) {
         effect: Effects.CHROMA_NONE,
       },
     },
-    chroma,
+    chroma
   );
 }

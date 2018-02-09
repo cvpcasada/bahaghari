@@ -20,7 +20,7 @@ export async function createChroma(application) {
 
   return {
     application,
-    uri: `https://chromasdk.io:54236/sessionid=${sessionid}`,
+    uri,
     sessionid,
     heartbeat,
   };
@@ -38,8 +38,7 @@ export async function setEffect({ device, method = 'PUT', body }, chroma) {
       });
   
       const jsonResp = await res.json();
-      console.log(jsonResp);
-   
+
       if ('results' in jsonResp || 'result' in jsonResp)
         return jsonResp;
       else
