@@ -1,8 +1,8 @@
-import { Effects } from './effects';
-import { setEffect } from './base';
-import { createBGRColor, generateGradient } from './color';
-import { DeviceCustomEffectConfig } from './devices';
-import delay from 'delay';
+import { Effects, setOffEffect } from "./effects";
+import { setEffect } from "./base";
+import { createBGRColor, generateGradient } from "./color";
+import { DeviceCustomEffectConfig } from "./devices";
+import delay from "delay";
 const FPS = 24;
 const WAVELENGTH_MULTIPLIER = 4;
 
@@ -23,8 +23,8 @@ export async function setBreathingAnimation(
       param: {
         color: createBGRColor(
           gradientFn(waveFn(FPS * WAVELENGTH_MULTIPLIER, i))
-        ),
-      },
+        )
+      }
     });
   }
 
@@ -43,9 +43,10 @@ export async function setWaveAnimation({ device, cycles, colors }, chroma) {
   const gradientFn = generateGradient(colors);
   const [customEffect, options] = DeviceCustomEffectConfig[device];
 
-  const colColors = Array(options.col).map((_, index) =>
-    createBGRColor(gradientFn(index / options.col))
-  );
+  const colColors = [];
+  for (let i = 0; i < options.col; i++) {
+    colColors.push(createBGRColor(gradientFn(i / options.col)));
+  }
 
   const effects = [];
   for (let i = 0; i < options.col; i++) {
@@ -54,7 +55,7 @@ export async function setWaveAnimation({ device, cycles, colors }, chroma) {
       param:
         options.row === 1
           ? colColors.slice(0)
-          : Array(options.row).fill(colColors.slice(0)),
+          : Array(options.row).fill(colColors.slice(0))
     });
 
     // shift colors
