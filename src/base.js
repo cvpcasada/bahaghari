@@ -1,8 +1,8 @@
 import fetch from 'cross-fetch';
 import delay from 'delay';
 
-export async function createChroma(application) {
-  const res = await fetch(`https://chromasdk.io:54236/razer/chromasdk`, {
+export async function createChroma(application, sdkUrl) {
+  const res = await fetch(sdkUrl || `https://chromasdk.io:54236/razer/chromasdk`, {
     method: `POST`,
     mode: `cors`,
     headers: {
