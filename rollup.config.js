@@ -15,9 +15,7 @@ const plugins = [
     ignoreGlobal: true,
     include: 'node_modules/**',
   }),
-  babel({
-    exclude: 'node_modules/**',
-  }),
+  babel(),
   replace({
     __DEV__: JSON.stringify(false),
   }),
