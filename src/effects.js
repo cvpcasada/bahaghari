@@ -16,7 +16,7 @@ export async function setStaticEffect({ device, color }, chroma) {
         param: { color },
       },
     },
-    chroma
+    chroma,
   );
 }
 
@@ -29,7 +29,7 @@ export async function setCustomEffect({ device, param }, chroma) {
         param,
       },
     },
-    chroma
+    chroma,
   );
 }
 
@@ -41,6 +41,6 @@ export async function setOffEffect({ device }, chroma) {
         effect: Effects.CHROMA_NONE,
       },
     },
-    chroma
+    chroma,
   );
 }

@@ -1,12 +1,12 @@
-import bezier from "bezier";
-import hexToRgb from "hex-to-rgb";
+import bezier from 'bezier';
+import hexToRgb from 'hex-to-rgb';
 
 export function generateGradient(colors = []) {
   let colorArray = colors.map(hexToRgb);
 
   return t =>
     colorArray[0].map((col, i) =>
-      Math.trunc(bezier(colorArray.map(row => row[i]), t))
+      Math.trunc(bezier(colorArray.map(row => row[i]), t)),
     );
 }
 
@@ -16,19 +16,19 @@ export function createBGRColor(color = [0, 0, 0]) {
     color = {
       r: result[0],
       g: result[1],
-      b: result[2]
+      b: result[2],
     };
-  } else if (typeof color === "number") {
+  } else if (typeof color === 'number') {
     color = {
       b: (color >> 16) & 0xff,
       g: (color >> 8) & 0xff,
-      r: (color >> 0) & 0xff
+      r: (color >> 0) & 0xff,
     };
   } else if (Array.isArray(color)) {
     color = {
       r: color[0],
       g: color[1],
-      b: color[2]
+      b: color[2],
     };
   }
 
