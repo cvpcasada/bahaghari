@@ -2,7 +2,7 @@ import { Effects, setOffEffect } from './effects';
 import { setEffect } from './base';
 import { createBGRColor, generateGradient } from './color';
 import { DeviceCustomEffectConfig } from './devices';
-import { delay } from './utils';
+import { delay } from './helpers';
 
 const FPS = 24;
 const WAVELENGTH_MULTIPLIER = 4;
