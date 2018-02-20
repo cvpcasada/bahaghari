@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import delay from 'delay';
+import { delay } from './utils';
 
 export async function createChroma(application, disableHeartbeat, sdkUrl) {
   const res = await fetch(
