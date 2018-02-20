@@ -23,10 +23,7 @@
     "babel-jest": "^22.1.0",
     "babel-plugin-fast-async": "^6.1.2",
     "babel-plugin-lodash": "^3.3.2",
-    "bezier": "^0.1.0",
-    "curry2": "^1.0.3",
     "delay": "^2.0.0",
-    "hex-to-rgb": "^1.0.1",
     "jest": "^22.1.4",
     "onchange": "^3.3.0",
     "prettier": "^1.10.2",
@@ -38,6 +35,8 @@
     "rollup-plugin-replace": "^2.0.0"
   },
   "dependencies": {
-    "cross-fetch": "^1.1.1"
+    "bezier": "^0.1.0",
+    "cross-fetch": "^1.1.1",
+    "hex-to-rgb": "^1.0.1"
   }
 }

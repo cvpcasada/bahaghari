@@ -1083,12 +1083,6 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   dependencies:
     cssom "0.3.x"
 
-curry2@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/curry2/-/curry2-1.0.3.tgz#38191d55f1060bfea47ca08009385bb878f6612f"
-  dependencies:
-    fast-bind "^1.0.0"
-
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -1315,10 +1309,6 @@ extsprintf@1.3.0:
 extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
-
-fast-bind@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fast-bind/-/fast-bind-1.0.0.tgz#7fa9652cb3325f5cd1e252d6cb4f160de1a76e75"
 
 fast-deep-equal@^1.0.0:
   version "1.0.0"
