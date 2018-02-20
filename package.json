@@ -1,6 +1,6 @@
 {
   "name": "bahaghari",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/bahaghari.common.js",
   "module": "dist/bahaghari.es.js",
   "license": "MIT",
