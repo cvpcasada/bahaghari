@@ -21,11 +21,11 @@ const app = {
 const chromaIntance = B.createChroma(app);
 
 // apply effects
-await B.setWaveAnimation({
+await B.setWaveAnimation(chromaInstance, {
     device: `keyboard`,
     cycles: 5,
     colors: ['#fff', `red`, ...]
-}, chromaInstance);
+});
 
 // cleanup / close
 await B.stop(chromaInstance);
