@@ -7,40 +7,31 @@ export const Effects = {
   CHROMA_STATIC: `CHROMA_STATIC`,
 };
 
-export async function setStaticEffect({ device, color }, chroma) {
-  return await setEffect(
-    {
-      device,
-      body: {
-        effect: Effects.CHROMA_STATIC,
-        param: { color },
-      },
+export async function setStaticEffect(chroma, { device, color }) {
+  return await setEffect(chroma, {
+    device,
+    body: {
+      effect: Effects.CHROMA_STATIC,
+      param: { color },
     },
-    chroma,
-  );
+  });
 }
 
-export async function setCustomEffect({ device, param }, chroma) {
-  return await setEffect(
-    {
-      device,
-      body: {
-        effect: Effects.CHROMA_CUSTOM,
-        param,
-      },
+export async function setCustomEffect(chroma, { device, param }) {
+  return await setEffect(chroma, {
+    device,
+    body: {
+      effect: Effects.CHROMA_CUSTOM,
+      param,
     },
-    chroma,
-  );
+  });
 }
 
-export async function setOffEffect({ device }, chroma) {
-  return await setEffect(
-    {
-      device,
-      body: {
-        effect: Effects.CHROMA_NONE,
-      },
+export async function setOffEffect(chroma, { device }) {
+  return await setEffect(chroma, {
+    device,
+    body: {
+      effect: Effects.CHROMA_NONE,
     },
-    chroma,
-  );
+  });
 }

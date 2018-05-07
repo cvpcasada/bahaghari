@@ -1,8 +1,8 @@
-import { Effects, setOffEffect } from './effects';
-import { setEffect } from './base';
-import { createBGRColor, generateGradient } from './color';
-import { DeviceCustomEffectConfig } from './devices';
-import { delay } from './helpers';
+import { Effects } from "./effects";
+import { setEffect } from "./base";
+import { createBGRColor, generateGradient } from "./color";
+import { DeviceCustomEffectConfig } from "./devices";
+import { delay } from "./helpers";
 
 const FPS = 24;
 const WAVELENGTH_MULTIPLIER = 4;
@@ -10,8 +10,8 @@ const WAVELENGTH_MULTIPLIER = 4;
 const waveFn = (fps, x) => Math.pow(Math.sin(Math.PI * x / fps), 2);
 
 export async function setBreathingAnimation(
-  { device, duration, colors = [] },
   chroma,
+  { device, duration, colors = [] }
 ) {
   const gradientFn = generateGradient(colors);
 
@@ -23,9 +23,9 @@ export async function setBreathingAnimation(
       effect: Effects.CHROMA_STATIC,
       param: {
         color: createBGRColor(
-          gradientFn(waveFn(FPS * WAVELENGTH_MULTIPLIER, i)),
-        ),
-      },
+          gradientFn(waveFn(FPS * WAVELENGTH_MULTIPLIER, i))
+        )
+      }
     });
   }
 
@@ -35,12 +35,14 @@ export async function setBreathingAnimation(
   // cycle while reversing the effects
   for (let i = 0; i < duration / (1000 * WAVELENGTH_MULTIPLIER); i++) {
     await Promise.all(
-      effects.map(async effect => await setEffect({ body: effect }, chroma)),
+      effects.map(
+        async effect => await setEffect(chroma, { device, body: effect })
+      )
     );
   }
 }
 
-export async function setWaveAnimation({ device, cycles, colors }, chroma) {
+export async function setWaveAnimation(chroma, { device, cycles, colors }) {
   const gradientFn = generateGradient(colors);
   const [customEffect, options] = DeviceCustomEffectConfig[device];
 
@@ -56,7 +58,7 @@ export async function setWaveAnimation({ device, cycles, colors }, chroma) {
       param:
         options.row === 1
           ? colColors.slice(0)
-          : Array(options.row).fill(colColors.slice(0)),
+          : Array(options.row).fill(colColors.slice(0))
     });
 
     // shift colors
@@ -66,7 +68,7 @@ export async function setWaveAnimation({ device, cycles, colors }, chroma) {
   // do the cycle?
   for (let i = 0; i < cycles; i++) {
     for (let j = 0; j < options.col; j++) {
-      await setEffect({ device, body: effects[j] }, chroma);
+      await setEffect(chroma, { device, body: effects[j] });
       await delay(1000 / FPS);
     }
   }
