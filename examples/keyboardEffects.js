@@ -2,7 +2,7 @@ const B = require('../dist/bahaghari.common');
 
 async function start() {
   const app = {
-    title: 'Keyboard CHROMA_STATIC test',
+    title: 'Bahaghari Examples Test',
     description: 'test set fixed keyboard color',
     author: {
       name: 'Chroma Developer',
@@ -14,25 +14,19 @@ async function start() {
 
   const chroma = await B.createChroma(app);
 
-  await B.setWaveAnimation(
-    {
-      device: app.device_supported[0],
-      cycles: 10,
-      colors: [`#ff0000`, `#00FF00`],
-    },
-    chroma,
-  );
+  await B.setWaveAnimation(chroma, {
+    device: app.device_supported[0],
+    cycles: 10,
+    colors: [`#ff0000`, `#00FF00`],
+  });
 
-  await B.setStaticEffect({device: `keyboard`, color: 255}, chroma);
+  await B.setStaticEffect(chroma, { device: `keyboard`, color: 255 });
 
-  await B.setBreathingAnimation(
-    {
-      device: app.device_supported[0],
-      duration: 10000,
-      colors: [`#551a8b`, `#000`, `#00ff00` ],
-    },
-    chroma,
-  );
+  await B.setBreathingAnimation(chroma, {
+    device: app.device_supported[0],
+    duration: 10000,
+    colors: [`#551a8b`, `#000`, `#00ff00`],
+  });
 
   await B.stop(chroma);
 }
