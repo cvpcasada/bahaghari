@@ -1,36 +1,40 @@
 import fetch from 'cross-fetch';
 import { delay } from './helpers';
 
-export async function createChroma(application, disableHeartbeat, sdkUrl) {
-  const res = await fetch(
-    sdkUrl || `https://chromasdk.io:54236/razer/chromasdk`,
-    {
-      method: `POST`,
-      mode: `cors`,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(application),
+const defaultOpts = {
+  heartbeat: true,
+  url: 'https://chromasdk.io:54236/razer/chromasdk',
+};
+
+export async function createChroma(
+  application,
+  { heartbeat, url } = defaultOpts
+) {
+  if (!url) throw new Error(`Please provide razer rest sdk url`);
+
+  const res = await fetch(url, {
+    method: `POST`,
+    mode: `cors`,
+    headers: {
+      'Content-Type': 'application/json',
     },
-  );
+    body: JSON.stringify(application),
+  });
 
   if (res.status >= 400) throw new Error(`Bad response from server`);
   const { uri, sessionid } = await res.json();
-  const heartbeat = !disableHeartbeat
-    ? setInterval(() => fetch(`${uri}/heartbeat`, { method: 'PUT' }), 5000)
-    : false;
-
-  //disableHeartbeat && await fetch(`${uri}/heartbeat`, { method: "PUT" })
 
   return {
     application,
     uri,
     sessionid,
-    heartbeat,
+    heartbeat:
+      heartbeat &&
+      setInterval(() => fetch(`${uri}/heartbeat`, { method: 'PUT' }), 5000),
   };
 }
 
-export async function setEffect({ device, method = 'PUT', body }, chroma) {
+export async function setEffect(chroma, { device, method = 'PUT', body }) {
   if (chroma.application.device_supported.includes(device)) {
     const res = await fetch(`${chroma.uri}/${device}`, {
       method,
@@ -52,7 +56,7 @@ export async function setEffect({ device, method = 'PUT', body }, chroma) {
   throw new Error(`${device} device is not supported`);
 }
 
-export async function setEffects({ effectIds, fps }, chroma) {
+export async function setEffects(chroma, { effectIds, fps }) {
   if (effectIds.length === 0) {
     return;
   }
@@ -74,7 +78,7 @@ export async function setEffects({ effectIds, fps }, chroma) {
   return jsonresp;
 }
 
-export async function deleteEffect(effectIds = [], chroma) {
+export async function deleteEffect(chroma, effectIds = []) {
   if (effectIds.length === 0) return;
   return await fetch(`${chroma.uri}/effect`, {
     mode: `cors`,
