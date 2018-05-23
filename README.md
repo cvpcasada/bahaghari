@@ -1,12 +1,19 @@
 # Bahaghari
 Functional javascript API wrapper for Razer Chroma REST api.
 
+Full Rest Documentation can be found here: https://assets.razerzone.com/dev_portal/REST/html/index.html
+
 *Documentation is work in progress*
 
 ## Usage
 
 ```javascript
 import * as B from 'bahaghari';
+
+const options = {
+  heartbeat: true,
+  url: 'https://chromasdk.io:54236/razer/chromasdk'
+};
 
 const app = {
     title: 'App Title',
