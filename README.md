@@ -25,7 +25,7 @@ const app = {
     device_supported: ['keyboard', 'mousepad', ...]
 }
 
-const chromaIntance = B.createChroma(app);
+const chromaIntance = B.createChroma(app, options);
 
 // apply effects
 await B.setWaveAnimation(chromaInstance, {
