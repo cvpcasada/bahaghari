@@ -1,7 +1,7 @@
 # Bahaghari
 Functional javascript API wrapper for Razer Chroma REST api.
 
-*Work in progress*
+*Documentation is work in progress*
 
 ## Usage
 
